@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Exemplo01</string>
+    <string name="activity1Label">Activity 1</string>
+    <string name="activity2Label">Activity 2</string>
+    <string name="button1Label">Próximo</string>
+    <string name="button2Label">Voltar</string>
+</resources>
