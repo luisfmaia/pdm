@@ -36,7 +36,7 @@ void lists() {
 
   // lst2[0] = 'ABC'; //Erro lista constante
 
-  print('$lst1 | lenght ${lst1.length}');
+  print('$lst1 | length ${lst1.length}');
 }
 
 void sets() {
@@ -45,6 +45,7 @@ void sets() {
 
   set2.add('z');
   set2.addAll(set1);
+  print(set2);
   print(set2.length);
 }
 
@@ -58,10 +59,11 @@ void maps() {
   map2[1] = 'Caxias';
   map2[2] = 'Codó';
 
-  print(map1);
+  print(map2);
 }
 
 Function functions() {
   soma(a, b) => a + b;
   return (i) => 2 * soma(i, i);
 }
+

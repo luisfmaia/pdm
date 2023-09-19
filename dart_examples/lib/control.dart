@@ -22,7 +22,7 @@ void loops() {
 
   print(collection.map((c) => c * 2));
 
-  collection.where((c) => c >= 3).forEach((c) => print(c));
+  collection.where((c) => c >= 3).forEach(print);
 }
 
 void branches() {

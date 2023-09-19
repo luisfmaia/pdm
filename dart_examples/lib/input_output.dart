@@ -14,7 +14,7 @@ void inputString() {
 
 void inputNumber() {
   print("Digite um número.");
-  int? n = int.parse(stdin.readLineSync()!);
+  int n = int.parse(stdin.readLineSync()!);
 
   print("Você digitou o número $n.");
 }
