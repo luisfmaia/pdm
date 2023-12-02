@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,11 +36,51 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
+  void saveData() async {
+    DocumentReference aluno =
+        FirebaseFirestore.instance.collection('alunos').doc('0');
+
+    await aluno.get().then((DocumentSnapshot doc) async {
+      if (doc.exists) {
+        return await aluno.update({
+          'chave1': 'valor3',
+          'chave2': 'valor4',
+        });
+      } else {
+        loadData();
+        return await aluno.set({
+          'chave1': 'valor1',
+          'chave2': 'valor2',
+        });
+      }
     });
   }
+
+  void loadData() async {
+    CollectionReference recordsRef =
+        FirebaseFirestore.instance.collection('/alunos/');
+
+    await recordsRef.get().then((QuerySnapshot snapshot) {
+      for (var aluno in snapshot.docs) {
+        print(aluno.data());
+      }
+      setState(() {
+        _counter = snapshot.docs.length;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().then((value) => loadData());
+  }
+
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: saveData,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

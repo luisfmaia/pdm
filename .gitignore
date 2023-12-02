@@ -2,8 +2,6 @@
 */.idea/*
 
 e_food/ios/Pods/
-hello_app/
-flutter_widgets/
 # Miscellaneous
 *.class
 *.log
